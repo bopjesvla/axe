@@ -1,19 +1,22 @@
 # Axe
 
-**TODO: Add description**
+The access sigil.
+
+## Examples
+
+    iex> import Axe
+    Axe
+    iex> x = %{z: [%{b: 2}, %{b: 6}]}
+    %{z: [%{b: 2}, %{b: 6}]}
+    iex> update_in(x, ~a[z.*.b], & &1 + 1)
+    %{z: [%{b: 3}, %{b: 7}]}
+    iex> update_in(x, ~a[z.@0.b], & &1 + 1)
+    %{z: [%{b: 3}, %{b: 6}]}
 
 ## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `axe` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [{:axe, "~> 0.1.0"}]
 end
 ```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/axe](https://hexdocs.pm/axe).
-
