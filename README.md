@@ -1,17 +1,26 @@
 # Axe
 
-The access sigil.
+> The access sigil
+
+## Motivation
+
+Updating nested data structures in Elixir can be tricky.
+The macro variant of `Kernel.*_in` is alright, but it cannot be piped
+and it only supports maps and keyword lists.
 
 ## Examples
 
-    iex> import Axe
-    Axe
-    iex> x = %{z: [%{b: 2}, %{b: 6}]}
-    %{z: [%{b: 2}, %{b: 6}]}
-    iex> update_in(x, ~a[z.*.b], & &1 + 1)
-    %{z: [%{b: 3}, %{b: 7}]}
-    iex> update_in(x, ~a[z.@0.b], & &1 + 1)
-    %{z: [%{b: 3}, %{b: 6}]}
+```elixir
+import Axe
+
+...
+
+%{z: [%{b: 2}, %{b: 6}], x: %{q: 0}}
+|> put_in(~a[x.q], 3)
+|> update_in(~a[z.*.b], & &1 + 1)
+|> update_in(~a[z.@0.b], & &1 + 100)
+# %{z: [%{b: 103}, %{b: 7}], x: %{q: 3}}
+```
 
 ## Installation
 
